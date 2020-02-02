@@ -1,0 +1,18 @@
+import numpy as pd
+def gradient(x,y):
+    mc = bc = 0
+    iteration = 10000
+    n = len(x)
+    learing_rate = 0.08
+    
+    for i in range(iteration):
+        y_pre = mc * x + bc
+        md = -(2/n)* sum(x*(y-y_pre))
+        bd = -(2/n)* sum(y-y_pre)
+        mc = mc- learing_rate * md
+        bc = bc- learing_rate * bd
+        cost = (1/n)* sum([val**2 for val in (y-y_pre)])
+        print("m {}, b {}, c {},  iteration {}".format(mc, bc,cost, i))
+        
+x = np.array([1, 2, 3, 4, 5])
+y = np.array([5, 7, 9, 11, 13])
